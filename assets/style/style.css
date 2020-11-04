@@ -1,0 +1,67 @@
+
+
+*{
+	font-family: Century Gothic, Helvetica, sans-serif;
+}
+
+body
+{
+background:url(../img/3.jfif)no-repeat;
+background-size: 100%;
+}
+
+
+
+video{
+
+   margin-bottom: 20%;
+ margin-left: 39%;
+
+}
+@media(max-width: 1000px){
+	body
+{
+background:url(../img/3.jfif);
+background-size: 100%;
+
+}
+
+}
+
+@media(max-width: 766px){
+	video
+{
+
+margin-left: 25%;
+}
+
+}
+
+@media(max-width: 579px){
+	video
+{
+
+margin-left: 15%;
+}
+
+
+@media(max-width: 450px){
+	video
+{
+background:url(../img/3.jfif)no-repeat;
+background-size: 100%;
+margin-left: 9%;
+}
+
+@media(max-width: 380px){
+	video
+{
+background:url(../img/3.jfif)no-repeat;
+background-size: 100%;
+margin-left: 7%;
+}
+
+h1{
+	font-size: 2px;
+}
+}

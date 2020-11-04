@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Webcam Image Classification using MobileNet and p5.js</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+        <script src="https://unpkg.com/ml5@0.1.2/dist/ml5.min.js" type="text/javascript"></script> 
+    </head>
+
+    <body>
+        <h1>Clasificador de imaganes por webcam usando MobileNet and p5.js</h1>
+        <p id='estado'>Carga modelo...</p>
+        <p>
+            Esto es un <strong> <span id="resultado">...</span></strong><br/>
+            Con una certeza del <strong><span id="probabilidad">...</span></strong>.
+        </p>
+        <script>
+            let clasificador;
+            let video;
+            function setup() {
+                noCanvas();
+                // Inicializa la camara
+                video = createCapture(VIDEO);
+                // Inicializa le clasificador de imagenes con el video
+                clasificador = ml5.imageClassifier('MobileNet', video, modeloListo);
+            }
+            //Cuando el modelo este listo
+            function modeloListo() {
+                // Cambiamos el estado a Modelo cargado
+                select('#estado').html('Modelo cargado');
+                // Llama al la funcion para comenzar a clasificar el video
+                clasificarVideo();
+            }
+            // Predecimos que imagen es la que se muestra en el video
+            function clasificarVideo() {
+                clasificador.predict(tomaResultado);
+            }
+            // Cuando obtenemos el resultado
+            function tomaResultado(err, resultado) {
+                console.log(resultado);
+                // Escribimos el nombre de la imagen detectada
+                select('#resultado').html(resultado[0].className);
+                select('#probabilidad').html(nf(resultado[0].probability, 0, 2));
+                // Llamamos de nuevo al clasificador
+                clasificarVideo();
+            }
+        </script>
+    </body>
+
+</html>
